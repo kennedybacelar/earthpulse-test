@@ -7,7 +7,7 @@ DEFAULT_FILENAME = "uploaded_file.tiff"
 
 async def write_file(filename: str = DEFAULT_FILENAME) -> bool:
     with open(filename, "wb") as file:
-        file.write(await filename.read())
+        file.write(await file.read())
     return True
 
 
