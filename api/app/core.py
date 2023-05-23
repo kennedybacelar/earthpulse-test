@@ -5,9 +5,9 @@ import rasterio.warp
 DEFAULT_FILENAME = "uploaded_file.tiff"
 
 
-async def write_file(filename: str = DEFAULT_FILENAME) -> bool:
+async def write_file(image: bytes, filename: str = DEFAULT_FILENAME) -> bool:
     with open(filename, "wb") as file:
-        file.write(await file.read())
+        file.write(await image.read())
     return True
 
 
