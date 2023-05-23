@@ -12,7 +12,7 @@ async def write_file(filename: str = DEFAULT_FILENAME) -> bool:
 
 
 def process_image_attributes(filename: str = DEFAULT_FILENAME):
-    with rasterio.open("example.tif") as dataset:
+    with rasterio.open(filename) as dataset:
         mask = dataset.dataset_mask()
         for geom, val in rasterio.features.shapes(mask, transform=dataset.transform):
             # Transform shapes from the dataset's own coordinate
