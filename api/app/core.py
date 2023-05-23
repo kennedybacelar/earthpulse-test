@@ -1,8 +1,14 @@
+from typing import Tuple
 import rasterio
 import rasterio.features
 import rasterio.warp
+from matplotlib import cm
+import numpy as np
+from PIL import Image
+
 
 DEFAULT_FILENAME = "uploaded_file.tiff"
+THUMBNAIL_FILENAME = "thumbnail.png"
 
 
 async def write_file(image: bytes, filename: str = DEFAULT_FILENAME) -> bool:
@@ -21,3 +27,13 @@ def process_image_attributes(filename: str = DEFAULT_FILENAME):
             "bounding_box": dataset.bounds,
         }
     return response_json
+
+
+def create_image_thumbnail(
+    filename: str = DEFAULT_FILENAME, max_size: Tuple[int, int] = (100, 100)
+):
+    with Image.open(DEFAULT_FILENAME) as image:
+        image.thumbnail(max_size)
+        image.save("pythonthumb.png")
+        image.show()
+    return image

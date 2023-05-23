@@ -1,7 +1,7 @@
 import os
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Form
 import uvicorn
-from .core import write_file, process_image_attributes
+from .core import write_file, process_image_attributes, create_image_thumbnail
 
 __author__ = "Kennedy Bacelar"
 
@@ -21,8 +21,13 @@ async def get_image_attributes_post(image: UploadFile = File(..., alias="file"))
 
 
 @app.post("/thumbnail")
-async def get_RGB_thumbnail_post(image: UploadFile = File(..., alias="file")):
-    pass
+async def get_RGB_thumbnail_post(
+    image: UploadFile = File(..., alias="file"),
+    width: int = Form(100),
+    height: int = Form(100),
+):
+    await write_file(image)
+    return create_image_thumbnail(max_size=(width, height))
 
 
 @app.post("/ndvi")
