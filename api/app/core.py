@@ -13,12 +13,11 @@ async def write_file(image: bytes, filename: str = DEFAULT_FILENAME) -> bool:
 
 def process_image_attributes(filename: str = DEFAULT_FILENAME):
     with rasterio.open(filename) as dataset:
-        mask = dataset.dataset_mask()
-        for geom, val in rasterio.features.shapes(mask, transform=dataset.transform):
-            # Transform shapes from the dataset's own coordinate
-            # reference system to CRS84 (EPSG:4326).
-            geom = rasterio.warp.transform_geom(
-                dataset.crs, "EPSG:4326", geom, precision=6
-            )
-
-            print(geom)
+        response_json = {
+            "width": dataset.width,
+            "height": dataset.height,
+            "number_of_bands": dataset.count,
+            "crs": dataset.crs.to_dict(),
+            "bounding_box": dataset.bounds,
+        }
+    return response_json

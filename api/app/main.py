@@ -17,7 +17,7 @@ def home_():
 @app.post("/attributes")
 async def get_image_attributes_post(image: UploadFile = File(..., alias="file")):
     await write_file(image)
-    process_image_attributes()
+    return process_image_attributes()
 
 
 @app.post("/thumbnail")
