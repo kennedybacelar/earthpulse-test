@@ -49,3 +49,8 @@ The application works over an Ubuntu system and with Python 3.10.
 6. To run the tests, also from the api/ directory, enter the command:
     ```
     python -m pytest -v tests
+
+
+## Testing
+
+You can test the API using the built-in FastAPI tool called Swagger UI. Access the URL http://localhost:8020/docs from your browser to access the interactive API documentation. The Swagger UI allows you to explore and test all the API endpoints by providing sample requests and viewing the responses.
