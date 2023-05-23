@@ -19,7 +19,7 @@ The API is designed to run using Uvicorn server on host "0.0.0.0" and port 8020.
 1. Clone the repository and navigate to the project directory. To start the API in a Docker container run at the root of the project:
     
     ```
-    docker-compose up
+    docker-compose up --build
     ```
 
 2. You can run the tests by executing the following command at the root of the project:
