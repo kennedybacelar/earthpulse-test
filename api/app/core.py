@@ -1,21 +1,17 @@
-import os
 import rasterio
 import rasterio.features
 import rasterio.warp
 
-DEFAULT_FILENAME = "uploaded_file.tif"
+DEFAULT_FILENAME = "uploaded_file.tiff"
 
 
 async def write_file(filename: str = DEFAULT_FILENAME) -> bool:
-    try:
-        with open(filename, "wb") as file:
-            file.write(await filename.read())
-        return True
-    except Exception as error:
-        return False
+    with open(filename, "wb") as file:
+        file.write(await filename.read())
+    return True
 
 
-def processing_image_attributes(filename: str = DEFAULT_FILENAME):
+def process_image_attributes(filename: str = DEFAULT_FILENAME):
     with rasterio.open("example.tif") as dataset:
         mask = dataset.dataset_mask()
         for geom, val in rasterio.features.shapes(mask, transform=dataset.transform):
