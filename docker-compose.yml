@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  api:
+    container_name: earth-pulse
+    image: python:3.10
+    volumes:
+      - ./api:/api
+    working_dir: /api
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PORT=8020
+    ports:
+      - 8020:8020
+    command: sh -c "pip install -r requirements.txt && python -m app.main"
+
+volumes:
+  db_data:
