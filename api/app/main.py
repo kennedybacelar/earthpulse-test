@@ -34,7 +34,7 @@ async def get_RGB_thumbnail_post(
 
 @app.post("/ndvi")
 async def get_colored_PNG(image: UploadFile = File(..., alias="file")):
-    pass
+    raise NotImplementedError("Endpoint is not implemented yet")
 
 
 if __name__ == "__main__":
